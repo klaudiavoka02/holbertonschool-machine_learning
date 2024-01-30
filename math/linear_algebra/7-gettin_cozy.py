@@ -18,7 +18,7 @@ def cat_matrices2D(mat1, mat2, axis=0):
             return None
         cat_matrix = []
         for i in range(len(mat1)):
-            cat_matrix.append(list(mat1[i])+ list(mat2[i]))
+            cat_matrix.append(list(mat1[i]) + list(mat2[i]))
         return cat_matrix
     else:
         return None
