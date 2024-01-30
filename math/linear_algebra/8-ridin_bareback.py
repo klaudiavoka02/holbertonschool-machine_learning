@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+"""a script that performs matrix multiplication"""
+
+
+def mat_mul(mat1, mat2):
+    """matrix multiplication"""
+    mat1_rows, mat1_columns = len(mat1), len(mat[0])
+    mat2_rows, mat2_columns = len(mat2), len(mat2[0])
+
+    if mat1_columns[1] != mat2_rows[0]:
+        return None
+
+    result = []
+    for i in range(mat1_rows):
+        result.append([])
+        for j in range(mat2_columns):
+            dot_product = sum(mat1[i][k] * mat2[k][j] for k in range(mat1_columns))
+            result[i].append(dot_product)
+
+    return result
