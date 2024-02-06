@@ -3,8 +3,6 @@
 
 
 def summation_i_squared(n):
-    sum = 0
-    for i in range(n +1):
-        sum += 1 ** 2
-
+"""function that calculates """
+    sum = (n*(n+1)*(2*n+1)) / 6
     return sum
