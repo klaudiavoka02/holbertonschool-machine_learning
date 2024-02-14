@@ -39,9 +39,9 @@ class Poisson:
         return pmf
 
     def cdf(self, k):
-    """
-    Calculates the cumulative distribution for a given number
-    """
+        """
+        Calculates the cumulative distribution for a given number
+        """
         if type(k) is not int:
             k = int(k)
         if k < 0:
