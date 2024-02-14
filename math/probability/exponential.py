@@ -1,43 +1,41 @@
 #!/usr/bin/env python3
-"""
-A class named exponential that represents an exponential distribution
-"""
+"""a class Exponential that represents an exponential distribution"""
 
 
 class Exponential:
     """
-    represents an exponential distribution
+    a class Exponential that represents an exponential distribution
     """
+    def __init__(self, data=None, lambtha=1.):
+        """
+        class constructor
+        """
         if data is None:
-            if lambtha <= 0:
+            if lambtha < 1:
                 raise ValueError("lambtha must be a positive value")
-            else:
-                self.lambtha = float(lambtha)
+            self.lambtha = float(lambtha)
         else:
-            if not isinstance(data, list):
+            if type(data) is not list:
                 raise TypeError("data must be a list")
-            if len(data) <= 1:
+            if len(data) < 2:
                 raise ValueError("data must contain multiple values")
-            self.lambtha = float(len(data) / sum(data))
+            lambtha = float(len(data) / sum(data))
+            self.lambtha = lambtha
 
     def pdf(self, x):
-        """
-        calculates the value of the PDF for a given time period
-        """
-        e = 2.7182818285
+        """Calculates the value of the PDF for a given time period"""
         if x < 0:
             return 0
-        else:
-            return self.lambtha * e ** (-self.lambtha * x)
+        e = 2.7182818285
+        lambtha = self.lambtha
+        pdf = lambtha * (e ** (-lambtha * x))
+        return pdf
 
     def cdf(self, x):
-        """
-        calculates the value of the CDF for a given time period
-        """
+        """Calculates the value of the CDF for a given time period"""
         if x < 0:
             return 0
         e = 2.7182818285
-        floated = 1 - e ** (-self.lambtha * x)
-        if floated == 0:
-            return 0.0
-        return floated
+        lambtha = self.lambtha
+        cdf = 1 - (e ** (-lambtha * x))
+        return cdf
