@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
-Calculates the intersection based on the 0-likelihood file previous.
+Based on the previous exercise write a function that calculates the marginal
+probability of calculating the data.
 """
 import numpy as np
-from scipy import special
 
 
-def intersection(x, n, P, Pr):
+def marginal(x, n, P, Pr):
     """
-    Calculates the intersection from the data given.
+    Calculates the marginal probability of obtaining the data
     """
     if not isinstance(n, int) or n <= 0:
         raise ValueError("n must be a positive integer")
 
     if not isinstance(x, int) or x < 0:
-        raise ValueError("x must be an integer that is greater than or "
-                         "equal to 0")
+        raise ValueError("x must be an integer that is greater than or"
+                         " equal to 0")
 
     if x > n:
         raise ValueError("x cannot be greater than n")
@@ -24,7 +24,8 @@ def intersection(x, n, P, Pr):
         raise TypeError("P must be a 1D numpy.ndarray")
 
     if not isinstance(Pr, np.ndarray) or Pr.ndim != 1 or Pr.shape != P.shape:
-        raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
+        raise TypeError("Pr must be a numpy.ndarray with the same"
+                        " shape as P")
 
     if np.any(P < 0) or np.any(P > 1):
         raise ValueError("All values in P must be in the range [0, 1]")
@@ -42,5 +43,6 @@ def intersection(x, n, P, Pr):
     factorial_part = n_fact / (x_fact * n_x_fact)
 
     intersection_results = (factorial_part * (P ** x) * ((1 - P) ** (n - x))
-* Pr)
-    return intersection_results
+                            * Pr)
+    marginal_prob = np.sum(intersection_results)
+    return marginal_prob
