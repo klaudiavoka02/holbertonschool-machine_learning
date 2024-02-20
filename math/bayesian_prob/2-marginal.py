@@ -44,5 +44,5 @@ def marginal(x, n, P, Pr):
 
     intersection_results = (factorial_part * (P ** x) * ((1 - P) ** (n - x))
                             * Pr)
-    marginal_prob = np.sum(intersection_results)
-    return marginal_prob
+    marginal = np.sum(intersection_results)
+    return marginal
