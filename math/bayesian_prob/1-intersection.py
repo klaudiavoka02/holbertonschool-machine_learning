@@ -41,5 +41,6 @@ def intersection(x, n, P, Pr):
 
     factorial_part = n_fact / (x_fact * n_x_fact)
 
-    intersection_results = (factorial_part * (P ** x) * ((1 - P) ** (n - x))* Pr)
+    intersection_results = (factorial_part * (P ** x) * ((1 - P) ** (n - x))
+    * Pr)
     return intersection_results
