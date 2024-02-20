@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Calculates the intersection based on the 0-likelihood file previous.
+Calculates the intersection based on the 0-likelihood file
 """
 import numpy as np
 from scipy import special
@@ -8,7 +8,7 @@ from scipy import special
 
 def intersection(x, n, P, Pr):
     """
-    Calculates the intersection from the data given.
+    Calculates the intersection from the data given
     """
     if not isinstance(n, int) or n <= 0:
         raise ValueError("n must be a positive integer")
@@ -42,5 +42,5 @@ def intersection(x, n, P, Pr):
     factorial_part = n_fact / (x_fact * n_x_fact)
 
     intersection_results = (factorial_part * (P ** x) * ((1 - P) ** (n - x))
-* Pr)
+                            * Pr)
     return intersection_results
