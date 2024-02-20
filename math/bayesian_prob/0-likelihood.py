@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-The function calculates the likelihood 
+The function calculates the likelihood
 """
 import numpy as np
 
