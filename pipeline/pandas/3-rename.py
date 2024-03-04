@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime
-# Old file required from previous task
+
 
 def from_file(filename, delimiter):
 
