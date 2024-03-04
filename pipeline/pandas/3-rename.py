@@ -4,11 +4,8 @@ import datetime
 
 def from_file(filename, delimiter):
 
-    data = pd.read_csv(filename, delimiter=delimiter, engine='python')
-    return data
+    df = pd.read.csv(filename, delimiter=delimiter)
+    return df
 
-    
-file = pd.read_csv('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv')
-file.rename(columns={"Timestamp": "Datetime"}, inplace=True)
-file['Datetime'] = pd.to_datetime(file['Datetime'], unit='s')
-print(file[['Datetime', 'Close']].tail())
+df1 = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
+print(df1.head())
