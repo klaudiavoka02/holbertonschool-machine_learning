@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-A  class Neuron that defines a single neuron performing binary classification (Based on 0-neuron.py)
+class Neuron that defines a single neuron
 """
 
 
 
 import numpy as np
 
-class Neuron:
+class Neuron :
     """
 A single neuron performing binary classification
     """
 
-def cost(self, Y, A):
+def cost(self, Y, A) :
     """ Calculates the cost of the model using logistic regression """
     m = Y.shape[1]
     m_loss = np.sum((Y * np.log(A)) + (1 - Y) * np.log(1.0000001 - A))
