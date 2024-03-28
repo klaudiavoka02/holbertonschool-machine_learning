@@ -22,10 +22,10 @@ class DeepNeuralNetwork:
             raise ValueError("nx must be a positive integer")
         if type(layers) is not list or len(layers) < 1:
             raise TypeError("layers must be a list of positive integers")
-        
+
         weights = {}
         previous = nx
-        
+
         for index, layer in enumerate(layers, 1):
 
             if type(layer) is not int or layer < 0:
