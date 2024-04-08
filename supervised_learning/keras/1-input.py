@@ -20,7 +20,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
                            kernel_regularizer=K.regularizers.L2(lambtha))(x)
 
 
-        if i !=len(layers)-1 and keep_prob is not None:
+        if i != len(layers) - 1 and keep_prob is not None:
             x = K.layers.Dropout(1 - keep_prob)(x)
 
 
