@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
-Same as previous tasks but with weights
+    Save and load weight function
 """
 
-
-import tensorflow.keras as keras
+import tensorflow.keras as K
 
 
 def save_weights(network, filename, save_format='h5'):
     """
-    Saves weights
+        function that saves a model's weights
     """
-    network.save_weights(filename=filename, save_format=save_format)
+    network.save_weights(filepath=filename,
+                         save_format=save_format)
 
 
 def load_weights(network, filename):
     """
-    Load weights
+        function that loads a model's weights
     """
-    network.load_weights(filename=filename)
+    network.load_weights(filepath=filename)
