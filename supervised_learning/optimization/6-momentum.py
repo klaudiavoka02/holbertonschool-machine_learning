@@ -18,4 +18,3 @@ def create_momentum_op(loss, alpha, beta1):
     train_op = optimizer.minimize(loss)
 
     return train_op
-c
