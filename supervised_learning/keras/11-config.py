@@ -3,22 +3,22 @@
     Save and load configuration
 """
 
-import tensorflow.keras as keras
+import tensorflow.keras as K
 
 
 def save_config(network, filename):
     """
-    saves a configuration in json format
+        saves a model's configuration in JSON format
     """
-    network_config = network.to_json(filename)
-    with open(filename, 'w') as f:
+    network_config = network.to_json()
+    with open(filename, "w") as f:
         f.write(network_config)
 
 
 def load_config(filename):
     """
-    loads a configuration in json format
+        loads a model with a specific configuration
     """
-    with open(filename, 'r') as f:
-        lead_network_config = f.read(f)
-    return keras.models.model_from_json(lead_network_config)
+    with open(filename, "r") as f:
+        load_network_config = f.read()
+    return K.models.model_from_json(load_network_config)
