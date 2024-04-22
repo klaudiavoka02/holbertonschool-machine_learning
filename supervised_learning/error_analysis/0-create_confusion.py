@@ -15,7 +15,6 @@ def create_confusion_matrix(labels, logits):
     classes = labels.shape[1]
     conf_matrix = np.zeros((classes, classes))
 
-    
     for i in range(m):
         true_class = np.argmax(labels[i])
         predicted_class = np.argmax(logits[i])
