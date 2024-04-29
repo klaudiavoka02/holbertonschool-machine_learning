@@ -1,17 +1,28 @@
 #!/usr/bin/env python3
 """
-    Cost of NN with L2 regularization
+    L2 regularization
 """
 
 import numpy as np
 
 
-def l2_reg_cost(cost):
+def l2_reg_cost(cost, lambtha, weights, L, m):
     """
-        Function that calculate the cost of NN with L2 regularization
+        Function that calculates the cost of a network with L2 Regularization
+
+        FORMULA = loss + lamda/2m * sum||w||**2
     """
-    regularization_L2 = tf.compat.v1.losses.get_regularization_losses()
+    reg_term = 0
 
-    cost_L2reg = cost + regularization_L2
+    for i in range(1, L + 1):
+        # construct key
+        weights_key = 'W' + str(i)
 
-    return cost_L2reg
+        # extract weight matrix
+        W_i = weights[weights_key]
+
+        reg_term += np.sum(np.square(W_i))
+
+    cost_L2 = cost + (lambtha / (2 * m)) * reg_term
+
+    return cost_L2
