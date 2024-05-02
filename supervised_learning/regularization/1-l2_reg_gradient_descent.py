@@ -25,7 +25,7 @@ def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):
 
         if layer != 1:
             dZ = dA * (1 - A_prev ** 2)
-        else:  
+        else:
             dZ = dA
 
         weights['W' + str(layer)] -= alpha * dW
