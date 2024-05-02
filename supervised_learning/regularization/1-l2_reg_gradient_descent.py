@@ -11,9 +11,8 @@ def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):
         function that updates the weights and biases of NN
         using gradient descent with L2 regularization
     """
-
     m = Y.shape[1]
-    dz = cache['A' + str(L)] - Y
+    dZ = cache['A' + str(L)] - Y
 
     for layer in range(L, 0, -1):
         L2_regularization = lambtha / m * weights['W' + str(layer)]
@@ -26,7 +25,7 @@ def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):
 
         if layer != 1:
             dZ = dA * (1 - A_prev ** 2)
-        else: 
+        else:  
             dZ = dA
 
         weights['W' + str(layer)] -= alpha * dW
