@@ -3,18 +3,15 @@
    RMSProp upgraded
 """
 
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 
 
-def create_RMSProp_op(loss, alpha, beta2, epsilon):
+def create_RMSProp_op(alpha, beta2, epsilon):
     """
-        Method tha create the training operation for NN
-        in tf using RMSProp optimization algo
+    Sets up the RMSProp optimization algorithm in TensorFlow.
     """
-    optimizer = tf.train.RMSPropOptimizer(learning_rate=alpha,
-                                          decay=beta2,
-                                          epsilon=epsilon)
-
-    train_op = optimizer.minimize(loss)
-
-    return train_op
+    optimizer = tf.keras.optimizers.RMSprop(
+        learning_rate=alpha,
+        rho=beta2,
+        epsilon=epsilon)
+    return optimizer
