@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
 """
-   Momentum upgraded
+   Momentum
 """
 
-import tensorflow.compat.v1 as tf
+
+import tensorflow as tf
 
 
-def create_momentum_op(loss, alpha, beta1):
+def create_momentum_op(alpha, beta1):
     """
-        Method to creates the training operation for a NN
-        in tf using gradient descent with momentum opt algo
+    Sets up the gradient descent with momentum
     """
-
-    optimizer = tf.train.MomentumOptimizer(learning_rate=alpha,
-                                           momentum=beta1)
-
-    train_op = optimizer.minimize(loss)
-
-    return train_op
+    optimizer = tf.keras.optimizers.SGD(
+        learning_rate=alpha,
+        momentum=beta1)
+    return optimizer
