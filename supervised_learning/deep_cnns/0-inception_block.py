@@ -5,7 +5,6 @@ using Keras
 """
 
 
-import tensorflow.keras as K
 
 
 def inception_block(A_prev, filters):
