@@ -4,8 +4,9 @@ Defines a function that builds an inception network
 using Keras model
 """
 
-
 import tensorflow.keras as K
+
+
 inception_block = __import__('0-inception_block').inception_block
 
 
@@ -13,6 +14,8 @@ def inception_network():
     """
     Builds an inception network using Keras model
     """
+
+    
     init = K.initializers.he_normal()
     activation = K.activations.relu
     img_input = K.Input(shape=(224, 224, 3))
