@@ -4,14 +4,13 @@ Defines a function that builds an inception block
 using Keras
 """
 
-
-
-
 def inception_block(A_prev, filters):
     """
     Builds an inception block using Keras
 
     """
+
+    
     F1, F3R, F3, F5R, F5, FPP = filters
     layer_1 = K.layers.Conv2D(filters=F1,
                               kernel_size=(1, 1),
