@@ -1,1 +1,1 @@
-#read me
+#Object detection is a fundamental task in computer vision that involves identifying and locating objects within an image or video.
