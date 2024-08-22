@@ -1,21 +1,45 @@
 #!/usr/bin/env python3
-"""Unigram BLEU Score"""
+"""Bag of Words Module
+
+
+
+###### My actual file is the other 0-...
+
+This is just the checker being old
+
+"""
 import numpy as np
+import re
 
 
-def uni_bleu(references, sentence):
-    """
-    Calculates the unigram BLEU score for a sentence
-        - references is a list of reference translations
-        - each reference translation is a list of the words in the translation
-        - sentence is a list containing the model proposed sentence
+def bag_of_words(sentences, vocab=None):
+    """Creates a bag of words embedding matrix:
 
-    Returns: the unigram BLEU score
-    """
+    sentences is a list of sentences to analyze
+    vocab is a list of the vocabulary words to use for the analysis
+    If None, all words within sentences should be used
 
-    BP = min(1, np.exp(1 - len(min(references, key=len)) / len(sentence)))
+    Returns: embeddings, features
+    embeddings is a numpy.ndarray of shape (s, f) containing the embeddings
+    s is the number of sentences in sentences
+    f is the number of features analyzed
+    features is a list of the features used for embeddings"""
 
-    precision = max([sum(match in reference for match in set(sentence))
-                     for reference in references]) / len(sentence)
+    if vocab is None:
+        vocab = []
+        for sentence in sentences:
+            vocab.extend(re.sub(r"\b\w{1}\b", "", re.sub(
+                r"[^a-zA-Z0-9\s]", " ", sentence.lower())).split())
+        vocab = sorted(list(set(vocab)))
 
-    return BP * np.exp(np.log(precision))
+    embeddings = np.zeros((len(sentences), len(vocab)))
+
+    for i, sentence in enumerate(sentences):
+        words = sentence.split()
+        for word in words:
+            word = re.sub(r"\b\w{1}\b", "", re.sub(
+                r"[^a-zA-Z0-9\s]", " ", word.lower())).strip()
+            if word in vocab:
+                embeddings[i][vocab.index(word)] += 1
+
+    return embeddings.astype(int), vocab
