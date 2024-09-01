@@ -1,32 +1,34 @@
 #!/usr/bin/env python3
-"""N-gram BLEU Score"""
+"""
+Function to create tf-idf embedding matrix
+"""
+
+from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 
 
-def ngram_bleu(references, sentence, n):
+def tf_idf(sentences, vocab=None):
     """
-    Calculates the n-gram BLEU score for a sentence:
-        - references is a list of reference translations
-        - each reference translation is a list of the words in the translation
-        - sentence is a list containing the model proposed sentence
-        - n is the size of the n-gram to use for evaluation
+    Function to create tf-idf embedding matrix
 
-    Returns: the n-gram BLEU score
+    Params:
+        sentences (list): list of sentences to analyze
+        vocab (list): list of vocabulary words to be used
+            -> if None use the entire sentences list
+
+    Returns:
+        embeddings (np array): with shape (s, f) containing the embeddings
+            s -> number of sentences in "sentences"
+            f -> number of features to be analyzed
+        features (list): list of feature names used for embeddings
     """
+    if vocab is None:
+        vector = TfidfVectorizer()
+    else:
+        vector = TfidfVectorizer(vocabulary=vocab)
 
-    BP = min(1, np.exp(1 - len(min(references, key=len)) / len(sentence)))
-    n_grams = []
-    n_grams_ref = 0
+    tfid_matrix = vector.fit_transform(sentences)
+    embeddings = tfid_matrix.toarray()
+    feature_names = vector.get_feature_names_out()
 
-    for reference in references:
-        n_grams_ref = []
-        for i in range(len(sentence) - (n - 1)):
-            if any(sentence[i:i + n] == reference[j:j+n]
-                   for j in range(len(reference) - (n - 1))) and \
-                    sentence[i:i+n] not in n_grams_ref:
-                n_grams_ref.append(sentence[i:i+n])
-        n_grams.append(len(n_grams_ref))
-
-    precision = max(n_grams) / (i + 1)
-
-    return BP * np.exp(np.log(precision))
+    return embeddings, feature_names
