@@ -24,16 +24,15 @@ def kmeans(X, k, iterations=1000):
     # Centroid
     C = np.random.uniform(X_min, X_max, size=(k, d))
 
-    # Loop for the maximum number of iterations
+    # Loop funtil convergence
     for i in range(iterations):
 
-        # initializes k centroids by selecting them from the data points
+        # initialize
         centroids = np.copy(C)
         centroids_extended = C[:, np.newaxis]
 
-        # euclidean distance (dimensions of the squared distances)
+        # calculate distance 
         distances = np.sqrt(((X - centroids_extended) ** 2).sum(axis=2))
-        # an array containing the index to the nearest centroid for each point
         clss = np.argmin(distances, axis=0)
 
         # Assign all points to the nearest centroid
